@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,8 +13,16 @@ export default function Navbar() {
   return (
     <nav className="bg-white px-6 py-4 shadow-md fixed top-0 left-0 w-full z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        {/* Логотип */}
-        <h1 className="text-black font-bold text-xl">AC&DL</h1>
+        {/* Clickable Logo */}
+        <Link href="/" className="w-16 h-auto block"> {/* Change href as needed */}
+          <Image 
+            src="/assets/logo.png" 
+            alt="AC&DL Logo" 
+            width={128} 
+            height={64} 
+            className="object-contain"
+          />
+        </Link>
 
         {/* Desktop меню */}
         <div className="hidden md:flex space-x-6 items-center">
