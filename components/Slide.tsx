@@ -1,12 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ReactNode } from 'react';
 
 interface SlideProps {
   title: string;
   color: string;
   animation?: 'fadeIn' | 'slideUp' | 'zoomIn' | 'flipIn' | 'typewriter';
+  children?: ReactNode;
 }
 
 const animations = {
@@ -28,7 +29,7 @@ const animations = {
   },
 };
 
-export default function Slide({ title, color, animation = 'fadeIn' }: SlideProps) {
+export default function Slide({ title, color, animation = 'fadeIn', children }: SlideProps) {
   const [typedText, setTypedText] = useState('');
   const [index, setIndex] = useState(0);
 
@@ -55,19 +56,28 @@ export default function Slide({ title, color, animation = 'fadeIn' }: SlideProps
   const chosen = animations[animation as keyof typeof animations];
 
   return (
-    <section className={`h-screen snap-center flex flex-col items-center justify-start px-10 pt-28 ${color}`}>
-      {animation === 'typewriter' ? (
-        <h2 className="text-xl sm:text-2xl md:text-4xl font-bold font-mono whitespace-normal break-words max-w-4xl">
-          {typedText}
-        </h2>
-      ) : (
-        <motion.h2
-          className="text-xl sm:text-2xl md:text-4xl font-bold whitespace-normal break-words max-w-4xl"
-          initial={chosen.initial}
-          animate={chosen.animate}
-        >
-          {title}
-        </motion.h2>
+    <section className={`h-screen snap-center flex flex-col md:flex-row items-center justify-center gap-10 px-10 ${color}`}>
+      <div className="flex-1 flex justify-center md:justify-start">
+        {animation === 'typewriter' ? (
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold font-mono whitespace-normal break-words max-w-4xl">
+            {typedText}
+          </h2>
+        ) : (
+          <motion.h2
+            className="text-xl sm:text-2xl md:text-4xl font-bold whitespace-normal break-words max-w-4xl"
+            initial={chosen.initial}
+            animate={chosen.animate}
+          >
+            {title}
+          </motion.h2>
+        )}
+      </div>
+
+      {/* Контент справа (например, 3D-сцена) */}
+      {children && (
+        <div className="flex-1 w-full h-[400px] md:h-[500px]">
+          {children}
+        </div>
       )}
     </section>
   );
