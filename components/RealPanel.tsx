@@ -14,23 +14,23 @@ export function RealPanel() {
     box.getCenter(center);
     scene.position.sub(center);
 
-    // Повернуть начально (по умолчанию 0, если AnimatedPanel управляет)
+    // Повернуть начально (если AnimatedPanel не управляет)
     scene.rotation.set(0, 0, 0);
 
-    // Сделать материалы светлее
+    // Настройки для каждого меша
     scene.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
         const mesh = child as THREE.Mesh;
+
+        // ✅ ВАЖНО: разрешаем тень
+        mesh.castShadow = true;
+
+        // ✅ Стилизация (опционально)
         const material = mesh.material as THREE.MeshStandardMaterial;
         if (material) {
-          // Светлый серый цвет
           material.color = new THREE.Color('#eeeeee');
-
-          // Лёгкое свечение
           material.emissive = new THREE.Color('#444444');
           material.emissiveIntensity = 0.5;
-
-          // Немного блеска (если хочешь)
           material.roughness = 0.4;
           material.metalness = 0.1;
         }

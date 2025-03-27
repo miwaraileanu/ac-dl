@@ -31,25 +31,20 @@ const animations = {
 
 export default function Slide({ title, color, animation = 'fadeIn', children }: SlideProps) {
   const [typedText, setTypedText] = useState('');
-  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     if (animation === 'typewriter') {
+      let index = 0;
       const typingInterval = setInterval(() => {
-        setIndex((prev) => {
-          if (prev < title.length) {
-            setTypedText(title.slice(0, prev + 1));
-            return prev + 1;
-          } else {
-            clearInterval(typingInterval);
-            return prev;
-          }
-        });
+        if (index < title.length) {
+          setTypedText((prev) => prev + title[index]);
+          index++;
+        } else {
+          clearInterval(typingInterval);
+        }
       }, 100);
 
-      return () => {
-        clearInterval(typingInterval);
-      };
+      return () => clearInterval(typingInterval);
     }
   }, [animation, title]);
 

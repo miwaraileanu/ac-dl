@@ -16,12 +16,12 @@ export function AnimatedPanel() {
   // Отслеживаем движение мыши
   useEffect(() => {
     if (typeof window === 'undefined') return;
-  
+
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
     };
-  
+
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
@@ -62,13 +62,33 @@ export function AnimatedPanel() {
 export default function IntroScene() {
   return (
     <div className="h-screen w-full">
-      <Canvas shadows camera={{ position: [0, 0, 5], fov: 45 }}>
+      <Canvas
+        shadows
+        camera={{ position: [0, 0, 5], fov: 45 }}
+        gl={{ antialias: true }}
+      >
         <ambientLight intensity={0.6} />
-        <directionalLight position={[5, 10, 5]} intensity={1} castShadow />
+        <directionalLight
+          position={[5, 10, 5]}
+          intensity={1}
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-camera-near={1}
+          shadow-camera-far={20}
+          shadow-camera-left={-10}
+          shadow-camera-right={10}
+          shadow-camera-top={10}
+          shadow-camera-bottom={-10}
+        />
         <OrbitControls enableZoom={false} enableRotate={false} />
         <AnimatedPanel />
         {/* Плоскость для тени */}
-        <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.3, 0]}>
+        <mesh
+          receiveShadow
+          rotation={[-Math.PI / 2, 0, 0]}
+          position={[0, -1.3, 0]}
+        >
           <planeGeometry args={[10, 10]} />
           <shadowMaterial transparent opacity={0.15} />
         </mesh>
