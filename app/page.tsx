@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Navbar />
       <div className="h-screen snap-y snap-mandatory overflow-scroll scroll-smooth">
-        <Slide title="Добро пожаловать в AC&DL" color="bg-white">
+        <Slide title="Welcome to AC&DL" color="bg-white" animation="typewriter">
           <IntroScene />
         </Slide>
         {/* другие слайды */}

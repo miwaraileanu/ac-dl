@@ -53,7 +53,7 @@ export function AnimatedPanel() {
   });
 
   return (
-    <group ref={panelRef}>
+    <group ref={panelRef} >
       <RealPanel />
     </group>
   );
@@ -67,7 +67,7 @@ export default function IntroScene() {
         camera={{ position: [0, 0, 5], fov: 45 }}
         gl={{ antialias: true }}
       >
-        <ambientLight intensity={0.6} />
+        <ambientLight intensity={0.5} />
         <directionalLight
           position={[5, 10, 5]}
           intensity={1}
