@@ -41,7 +41,7 @@ export function RealPanel() {
   return (
     <primitive
       object={scene}
-      scale={0.06}
+      scale={0.05}
     />
   );
 }

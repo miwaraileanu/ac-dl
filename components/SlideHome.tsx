@@ -73,7 +73,7 @@ export default function SlideHome({ title, color, animation = 'fadeIn' }: SlideP
       <div className="w-full flex flex-col items-center md:items-start md:w-1/2 pt-10">
         {animation === 'typewriter' ? (
           <>
-            <h2 className="text-xl sm:text-2xl md:text-4xl font-bold font-mono whitespace-normal break-words max-w-4xl text-center md:text-left mb-12">
+            <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold font-mono whitespace-normal break-words max-w-4xl text-center md:text-left mb-6 tracking-[-0.03em]">
               {typedText}
             </h2>
             {showDescription && (
@@ -90,7 +90,7 @@ export default function SlideHome({ title, color, animation = 'fadeIn' }: SlideP
         ) : (
           <>
             <motion.h2
-              className="text-xl sm:text-2xl md:text-4xl font-bold whitespace-normal break-words max-w-4xl text-center md:text-left"
+              className="text-xl sm:text-2xl md:text-4xl font-bold whitespace-normal break-words max-w-4xl text-center md:text-left tracking-[-0.03em]"
               initial={chosen.initial}
               animate={chosen.animate}
             >
