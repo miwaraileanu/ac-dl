@@ -1,6 +1,6 @@
 // app/page.tsx
 import Navbar from "@/components/Navbar";
-import Slide from "@/components/Slide";
+import SlideHome from "@/components/SlideHome";
 import IntroScene from '@/components/IntroScene';
 
 export default function Home() {
@@ -8,9 +8,9 @@ export default function Home() {
     <>
       <Navbar />
       <div className="h-screen snap-y snap-mandatory overflow-scroll scroll-smooth">
-        <Slide title="Welcome to AC&DL" color="bg-white" animation="typewriter">
+        <SlideHome title="Welcome to AC&DL" color="bg-white" animation="typewriter">
           <IntroScene />
-        </Slide>
+        </SlideHome>
         {/* другие слайды */}
       </div>
     </>

@@ -30,7 +30,7 @@ const animations = {
   },
 };
 
-export default function Slide({ title, color, animation = 'fadeIn' }: SlideProps) {
+export default function SlideHome({ title, color, animation = 'fadeIn' }: SlideProps) {
   const [typedText, setTypedText] = useState('');
   const [index, setIndex] = useState(0);
   const [showDescription, setShowDescription] = useState(false);
